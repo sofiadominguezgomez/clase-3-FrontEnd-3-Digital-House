@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de mesa - Clase 3</title>
+    <link rel="stylesheet" href="/c3/mesa/styles.css">
+</head>
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel"> 
+    
+    const character = {
+        Name: "Juan",
+        LastName: "El profundo",
+        Age: 67,
+        Nationality: "Estadounidense",
+        Experience: [
+            "Piratas del Caribe","Jhonny scissors hand","Trascendent"
+        ]
+        ,
+        Education: [
+            "University of Arts", "University of Ucla"
+        ]
+        ,
+        Bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias vel rem nam animi culpa eligendi labore error cupiditate, placeat non mollitia laudantium blanditiis? Facere, blanditiis et dolores adipisci praesentium accusantium!",
+        Image: "/c3/mesa/jony.jpg"
+    }
+
+    const Header = () => {
+        return (
+            <header> 
+                <nav>
+                    <ul className="nav_links">
+                        <li> <a href="#"> Home </a>  </li>
+                        <li> <a href="#"> About </a> </li>
+                        <li> <a href="#"> Career </a> </li>
+                        <li> <a href="#"> Education </a> </li>
+                    </ul>    
+                </nav>    
+            </header>
+        )
+    }
+
+    const Lista = ({datos}) => {
+        const info = datos.map((dato) => <li>{dato}</li>)
+      
+        return (info);
+    }
+
+    const Card = ({props}) => {
+        return (
+            <div className="card">
+                <div class="imagen">
+                    <picture>
+                        <img src={props.Image} alt={props.Name} />
+                        <h4> {props.Name} {props.LastName} </h4>
+                    </picture>
+                    
+                </div>
+
+                <div class="info">
+                    <p>  Name: {props.Name} </p>
+                    <p>  Last Name: {props.LastName} </p>
+                    <p>  Age: {props.Age} </p>
+                    <p>  Nationality: {props.Nationality} </p>
+                    <p>  Experience: <Lista datos={props.Experience}/> </p>
+                    <p>  Education: <Lista datos={props.Education} /> </p>
+                    <p>  Bio: {props.Bio} </p>  
+                </div>
+                  
+            </div>
+        )  
+    }
+
+    const Main = ({props}) => {
+        return (
+            <main>
+                <Card props={character} />    
+            </main>
+        )
+    }
+
+    const Footer = () => {
+        return (
+            <footer>
+
+            </footer>
+        )  
+    }
+    
+
+    const App = (
+        <div>
+            <Header  />
+            <Main props={character} />    
+        </div>
+    )
+
+    const app = document.getElementById("root");
+    const root = ReactDOM.createRoot(app)
+    root.render(App)
+
+    </script>
+</body>
+</html>
